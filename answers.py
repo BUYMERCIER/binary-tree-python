@@ -14,17 +14,23 @@ class BinTree:
         self.key = key
         self.left = left
         self.right = right
-        
+
 ################################################################################
 # Write a function that calculates the size of a binary tree.
 
-def size(B, size = 0):
-    if B != None:
-        size += 1
-        if B.left != None:
-            size += size(B.left, size)
-        if B.right != None:
-            size += size(B.right, size)
-        return size
+def size(B):
+    if B == None:
+        return 0
+    else:
+        return 1 + size(B.left) + size(B.right)
 
 ################################################################################
+# Tests
+
+C = BinTree(9, None, None)
+D = BinTree(4, None, None)
+B = BinTree(3, None, D)
+A = BinTree(7, B, C)
+
+toSVG(A, "tree")
+print(size(A))
